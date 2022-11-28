@@ -1,5 +1,8 @@
 name: Test Docker
 
+on:
+  workflow_dispatch:
+
 jobs:
   Test_for_Docker:
     runs-on: ubuntu-latest
