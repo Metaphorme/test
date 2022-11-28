@@ -17,5 +17,5 @@ jobs:
       
       - name: Run
         run: |
-          docker run /bin/echo 'Hello world' rosetta
+          docker run -i rosetta /bin/echo 'Hello world'
           
