@@ -1,0 +1,11 @@
+name: Test Docker
+
+jobs:
+  Test_for_Docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Limit thread
+        run: |
+          docker version
+          
