@@ -14,4 +14,8 @@ jobs:
       - name: Build
         run: |
           docker build -t rosetta .
+      
+      - name: Run
+        run: |
+          docker exec rosetta -it /bin/echo 'Hello world'
           
