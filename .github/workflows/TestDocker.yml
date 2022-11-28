@@ -8,7 +8,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Limit thread
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: 3.13
+      
+      - name: Build
         run: |
-          docker version
+          docker build -t rosetta .
           
