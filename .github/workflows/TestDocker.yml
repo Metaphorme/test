@@ -17,5 +17,5 @@ jobs:
       
       - name: Run
         run: |
-          docket run -i alpine /bin/echo PATH
+          docker run -i alpine /bin/echo PATH
           
