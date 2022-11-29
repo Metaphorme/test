@@ -1,12 +1,12 @@
 name: Test Docker
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:
-  Test:
+  test:
     runs-on: ubuntu-latest
-
     steps:
       steps:
       - name: Maximize build space
