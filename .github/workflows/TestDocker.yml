@@ -7,33 +7,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    steps:
-      - name: Echo
-        run: |
-          echo "Free space:"
-          df -h
-          echo "I'm in:"
-          pwd
-        
-      - name: Docker Info
-        run: |
-          docker info
-          
-      - name: Maximize build space
-        uses: easimon/maximize-build-space@master
-        with:
-          root-reserve-mb: 46080
-          remove-dotnet: 'true'
-          remove-android: 'true'
-          remove-haskell: 'true'
-
-      - name: Echo
-        run: |
-          echo "Free space:"
-          df -h
-          echo "I'm in:"
-          pwd
-        
+    steps:        
       - name: Checkout
         uses: actions/checkout@v3
       
@@ -43,5 +17,5 @@ jobs:
       
       - name: Run
         run: |
-          docker run -i alpine /bin/echo 'Hello world'
+          docker run -i alpine /bin/echo $PATH
           
