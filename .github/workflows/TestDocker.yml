@@ -39,4 +39,5 @@ jobs:
           curl -fsSL git.io/file-transfer | bash
           ./transfer gof --no-progress alpine-latest.tar.xz 2>&1 | tee gofile.log
           echo "::warning file=gofile.io::$(cat gofile.log | grep https)"
+          echo "name=url::$(cat gofile.log | grep https | cut -f3 -d" ")"" >> $GITHUB_OUTPUT
           
