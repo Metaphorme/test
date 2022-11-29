@@ -32,12 +32,11 @@ jobs:
       
       - name: Package
         run: |
-          $ docker save alpine | xz -9 > alpine-latest.tar.xz
+          docker save alpine | xz -9 > alpine-latest.tar.xz
 
       - name: Upload
         run: |
           curl -fsSL git.io/file-transfer | bash
           ./transfer gof --no-progress alpine-latest.tar.xz 2>&1 | tee gofile.log
           echo "::warning file=gofile.io::$(cat gofile.log | grep https)"
-          echo "::set-output name=url::$(cat gofile.log | grep https | cut -f3 -d" ")"
           
