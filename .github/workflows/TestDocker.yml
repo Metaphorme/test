@@ -4,10 +4,23 @@ on:
   workflow_dispatch:
 
 jobs:
-  Test_for_Docker:
+  Test:
     runs-on: ubuntu-latest
 
     steps:
+      steps:
+      - name: Maximize build space
+        uses: easimon/maximize-build-space@master
+        with:
+          swap-size-mb: 'true'
+          remove-dotnet: 'true'
+          remove-android: 'true'
+
+      - name: Build
+        run: |
+          echo "Free space:"
+          df -h
+        
       - name: Checkout
         uses: actions/checkout@v3
       
