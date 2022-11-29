@@ -8,11 +8,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Echo
+        run: |
+          echo "Free space:"
+          df -h
+          
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
-        with:
-          remove-dotnet: 'true'
-          remove-android: 'true'
 
       - name: Echo
         run: |
@@ -29,15 +31,4 @@ jobs:
       - name: Run
         run: |
           docker run -i alpine /bin/echo 'Hello world'
-      
-      - name: Package
-        run: |
-          docker save alpine | xz -9 > alpine-latest.tar.xz
-
-      - name: Upload
-        run: |
-          curl -fsSL git.io/file-transfer | bash
-          ./transfer gof --no-progress alpine-latest.tar.xz 2>&1 | tee gofile.log
-          echo "::warning file=gofile.io::$(cat gofile.log | grep https)"
-          echo "name=$(cat gofile.log | grep https | cut -f3 -d" ")" >> $GITHUB_OUTPUT
           
