@@ -1,4 +1,4 @@
-name: Test Docker
+name: Test dd
 
 on:
   workflow_dispatch:
@@ -7,6 +7,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Sudo
+        run: |
+          useradd -m steven
+          usermod -a -G sudo steven
+
       - name: Echo
         run: |
           echo "Free space:"
@@ -14,7 +19,7 @@ jobs:
       
       - name: dd
         run: |
-          dd if=/dev/zero of=/var/test bs=1M count=1000
+          sudo dd if=/dev/zero of=/var/test bs=1M count=1000
       
       - name: Echo
         run: |
