@@ -13,5 +13,4 @@ ENV PATH=/rosetta/source/bin:$PATH \
     OMPI_ALLOW_RUN_AS_ROOT=1 \
     OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1
 
-RUN echo $DEBIAN_FRONTEND \
-    echo $PATH
+RUN apk --update add --no-cache bash \
