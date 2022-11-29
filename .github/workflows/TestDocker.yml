@@ -35,6 +35,7 @@ jobs:
           $ docker save alpine | xz -9 > alpine-latest.tar.xz
 
       - name: Upload
+        run: |
           curl -fsSL git.io/file-transfer | bash
           ./transfer gof -s -p 64 --no-progress alpine-latest.tar.xz 2>&1 | tee gofile.log
           echo "::warning file=gofile.io::$(cat gofile.log | grep https)"
