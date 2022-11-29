@@ -23,7 +23,11 @@ jobs:
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
         with:
-          root-reserve-mb: 20480
+          root-reserve-mb: 
+          swap-size-mb: 46080
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
 
       - name: Echo
         run: |
@@ -41,5 +45,9 @@ jobs:
       
       - name: Run
         run: |
+<<<<<<< HEAD
+          docker run -i rosetta /bin/echo 'Hello world'
+=======
           docker run -i alpine /bin/echo 'Hello world'
+>>>>>>> 786d7dac50f22dff152d359f846ec9fc4bc2fcc7
           
