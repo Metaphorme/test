@@ -20,6 +20,8 @@ jobs:
         run: |
           echo "Free space:"
           df -h
+          echo "I'm in:"
+          pwd
         
       - name: Checkout
         uses: actions/checkout@v3
