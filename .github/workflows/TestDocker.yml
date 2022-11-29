@@ -15,7 +15,7 @@ jobs:
           remove-dotnet: 'true'
           remove-android: 'true'
 
-      - name: Build
+      - name: Echo
         run: |
           echo "Free space:"
           df -h
@@ -25,9 +25,9 @@ jobs:
       
       - name: Build
         run: |
-          docker build -t rosetta .
+          docker build -t alpine .
       
       - name: Run
         run: |
-          docker exec -i rosetta /bin/echo 'Hello world'
+          docker run -i alpine /bin/echo 'Hello world'
           
