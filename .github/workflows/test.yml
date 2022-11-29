@@ -13,7 +13,7 @@ jobs:
           df -h
       
       - name: dd
-        run |
+        run: |
           dd if=/dev/zero of=/var/test bs=1M count=1000
       
       - name: Echo

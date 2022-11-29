@@ -2,6 +2,7 @@ name: Test Docker
 
 on:
   push:
+    - .github/workflows/TestDocker.yml
   workflow_dispatch:
 
 jobs:
