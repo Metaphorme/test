@@ -7,22 +7,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Sudo
+      - name: Build
         run: |
-          useradd -m steven
-          usermod -a -G sudo steven
-
-      - name: Echo
-        run: |
-          echo "Free space:"
-          df -h
+          chmod +x build.sh
+          ./build.sh
       
-      - name: dd
+      - name: Run
         run: |
-          sudo dd if=/dev/zero of=/var/test bs=1M count=1000
-      
-      - name: Echo
-        run: |
-          echo "Free space:"
-          df -h
+          docker run -i alpine /bin/ash -c 'cat LICENSE'
           
