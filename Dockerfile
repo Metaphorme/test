@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.authors="Metaphorme" \
       org.opencontainers.image.documentation="https://github.com/Metaphorme/Rosetta2Go"
 
 ARG DEBIAN_FRONTEND=noninteractive \
-    FILE_SERVER='http://127.0.0.1:28292'
+    FILE_SERVER='http://127.0.0.1:8080'
 
 ENV LIB_LIBRARY_PATH=/rosetta/source/external/lib:$LIB_LIBRARY_PATH \
     LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/openmpi/lib \
