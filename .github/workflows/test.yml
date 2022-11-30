@@ -23,5 +23,5 @@ jobs:
       
       - name: Build
         run: |
-          docker build -t rosetta .
+          docker build --network="host" -t rosetta .
           
