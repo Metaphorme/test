@@ -12,6 +12,6 @@ ENV LIB_LIBRARY_PATH=/rosetta/source/external/lib:$LIB_LIBRARY_PATH \
     OMPI_ALLOW_RUN_AS_ROOT=1 \
     OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1
 
-RUN set -x; apk --update add --no-cache curl \
-    && curl $FILE_SERVER \
-    && curl $FILE_SERVER/LICENSE
+VOLUME /data
+
+RUN set -x; apk --update add --no-cache bash
