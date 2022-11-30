@@ -2,7 +2,7 @@
 
 echo "Start to build for docker..."
 
-nohup /usr/bin/python3 -m http.server 8080 &
+nohup python -m SimpleHTTPServer 8080 &
 sleep 5
 
 docker build -t rosetta - < Dockerfile
