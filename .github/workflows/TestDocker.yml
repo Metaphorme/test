@@ -16,5 +16,5 @@ jobs:
       
       - name: Run
         run: |
-          docker run -v $PWD:/data -i alpine /bin/echo /data/LICENSE
+          docker run -v $PWD:/data -i alpine /bin/cat /data/LICENSE
           
