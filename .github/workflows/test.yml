@@ -14,8 +14,4 @@ jobs:
         run: |
           chmod +x build.sh
           ./build.sh
-      
-      - name: Run
-        run: |
-          curl -O http://127.0.0.1:28294/LICENSE
           
