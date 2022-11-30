@@ -17,5 +17,5 @@ jobs:
       
       - name: Run
         run: |
-          docker run -i alpine /bin/ash -c 'cat LICENSE'
+          docker run -i rosetta /bin/ash -c 'cat LICENSE'
           
