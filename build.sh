@@ -2,8 +2,10 @@
 
 echo "Start to build for docker..."
 
-nohup python -m SimpleHTTPServer 8080 &
-sleep 5
+docker run -d \
+    -v $PWD:/web \
+    -p 8080:8080 \
+    halverneus/static-file-server:latest
 
 docker build -t rosetta - < Dockerfile
 #kill -9 $(netstat -antp | grep :28294 | awk '{print $7}' | awk -F'/' '{ print $1 }')
