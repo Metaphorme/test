@@ -10,8 +10,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         
+      - name: File server
+        run: |
+          docker run -d \
+            -v $PWD:/web \
+            -p 8080:8080 \
+            halverneus/static-file-server:latest
+      
+      - name: Test File server
+        run: |
+          curl http://127.0.0.1:8080
+      
       - name: Build
         run: |
-          chmod +x build.sh
-          ./build.sh
+          docker build -t rosetta .
           
