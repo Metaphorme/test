@@ -16,4 +16,3 @@ VOLUME /data
 
 RUN set -x; apk --update add --no-cache curl
 
-WORKDIR /data
