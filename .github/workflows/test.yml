@@ -23,5 +23,5 @@ jobs:
       
       - name: Build
         run: |
-          docker build --network="host" -t rosetta .
+          docker build -p 120.0.0.1:8080:8080 -t rosetta .
           
