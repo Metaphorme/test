@@ -27,5 +27,5 @@ jobs:
 
       - name: Test
         run: |
-          docker run -i rosetta /bin/ash -c 'ls'
+          docker run -v $PWD:/data -i rosetta /bin/ash -c 'ls'
           

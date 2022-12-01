@@ -14,7 +14,6 @@ ENV LIB_LIBRARY_PATH=/rosetta/source/external/lib:$LIB_LIBRARY_PATH \
 
 VOLUME /data
 
-RUN set -x; apk --update add --no-cache curl \
-    && curl http://127.0.0.1:8080/LICENSE >> /data/LICENSE
+RUN set -x; apk --update add --no-cache curl
 
 WORKDIR /data
