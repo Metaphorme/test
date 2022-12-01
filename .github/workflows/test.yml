@@ -27,5 +27,5 @@ jobs:
 
       - name: Test
         run: |
-          docker run -i rosetta /usr/ash -c 'cat LICENSE'
+          docker run -i rosetta /bin/ash -c 'cat LICENSE'
           
