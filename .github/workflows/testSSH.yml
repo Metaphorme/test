@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Change hosts
         run: |
-          echo "154.213.2.253        gitee.com" >> /etc/hosts
+          sudo echo "154.213.2.253        gitee.com" >> /etc/hosts
 
       - name: Test Gitee IP
         run: |
