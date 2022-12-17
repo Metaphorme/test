@@ -7,6 +7,10 @@ jobs:
   Synchronize:
     runs-on: ubuntu-latest
     steps:
+      - name: Test Gitee IP
+        run: |
+          ping -c 2 gitee.com
+
       - name: Add SSH keys
         uses: webfactory/ssh-agent@v0.7.0
         with:
