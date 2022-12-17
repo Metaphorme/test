@@ -7,6 +7,10 @@ jobs:
   Synchronize:
     runs-on: ubuntu-latest
     steps:
+      - name: Change hosts
+        run: |
+          echo "154.213.2.253        gitee.com" >> /etc/hosts
+
       - name: Test Gitee IP
         run: |
           ping -c 2 gitee.com
