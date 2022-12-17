@@ -1,0 +1,19 @@
+name: testSSH
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Synchronize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add SSH keys
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: |
+            ${{ secrets.SSH_KEY }}
+      
+      - name: Clone From Gitee
+        run: |
+          ssh -T git@gitee.com
+          ssh -T git@github.com
