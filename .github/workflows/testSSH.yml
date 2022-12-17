@@ -12,8 +12,11 @@ jobs:
         with:
           ssh-private-key: |
             ${{ secrets.SSH_KEY }}
+
+      - name: Test Github
+        run: |
+          ssh -T git@github.com
       
-      - name: Clone From Gitee
+      - name: Test Gitee
         run: |
           ssh -T git@gitee.com
-          ssh -T git@github.com
