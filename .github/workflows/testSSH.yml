@@ -23,4 +23,4 @@ jobs:
       
       - name: Test Gitee
         run: |
-          ssh -T git@gitee.com
+          ssh -o StrictHostKeyChecking=no -T git@gitee.com
