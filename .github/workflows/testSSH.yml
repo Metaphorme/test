@@ -11,6 +11,10 @@ jobs:
         run: |
           sudo echo "154.213.2.253        gitee.com" | sudo tee -a /etc/hosts
 
+      - name: Test Baidu
+        run: |
+          ping -c 2 www.baidu.com
+
       - name: Test Gitee IP
         run: |
           ping -c 2 gitee.com
