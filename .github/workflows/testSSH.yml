@@ -21,9 +21,9 @@ jobs:
         run: |
           echo "gitee.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEKxHSJ7084RmkJ4YdEi5tngynE8aZe2uEoVVsB/OvYN" > ~/.ssh/known_hosts
 
-      - name: Test Github
+      - name: Test Gitee
         run: |
-          ssh -T git@github.com
+          ssh -T git@gitee.com
       
       - name: Git Clone
         run: |
