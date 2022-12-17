@@ -23,7 +23,7 @@ jobs:
       
       - name: Add Host Key
         run: |
-          ssh -o StrictHostKeyChecking=no -T git@gitee.com
+          echo "gitee.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEKxHSJ7084RmkJ4YdEi5tngynE8aZe2uEoVVsB/OvYN" > ~/.ssh/known_hosts
       
       - name: Git Clone
         run: |
