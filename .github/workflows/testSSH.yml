@@ -21,6 +21,10 @@ jobs:
       #  run: |
       #    ssh -T git@github.com
       
-      - name: Test Gitee
+      - name: Add Host Key
         run: |
-          ssh -T git@gitee.com
+          ssh -o StrictHostKeyChecking=no -T git@gitee.com
+      
+      - name: Git Clone
+        run: |
+          git clone git@gitee.com:cpu_-imis/CPUIMS_Clone.git
