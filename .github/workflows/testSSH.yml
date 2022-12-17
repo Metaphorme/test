@@ -11,20 +11,24 @@ jobs:
       #  run: |
       #    sudo echo "154.213.2.253        gitee.com" | sudo tee -a /etc/hosts
 
-      - name: Add SSH keys
-        uses: webfactory/ssh-agent@v0.7.0
-        with:
-          ssh-private-key: |
-            ${{ secrets.SSH_KEY }}
+      #- name: Add SSH keys
+      #  uses: webfactory/ssh-agent@v0.7.0
+      #  with:
+      #    ssh-private-key: |
+      #      ${{ secrets.SSH_KEY }}
       
-      - name: Add Host Key
-        run: |
-          echo "gitee.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEKxHSJ7084RmkJ4YdEi5tngynE8aZe2uEoVVsB/OvYN" > ~/.ssh/known_hosts
+      #- name: Add Host Key
+      #  run: |
+      #    echo "gitee.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEKxHSJ7084RmkJ4YdEi5tngynE8aZe2uEoVVsB/OvYN" > ~/.ssh/known_hosts
 
-      - name: Test Gitee
-        run: |
-          ssh -T git@gitee.com
+      #- name: Test Gitee
+      #  run: |
+      #    ssh -T git@gitee.com
       
-      - name: Git Clone
+      #- name: Git Clone
+      #  run: |
+      #    git clone git@gitee.com:cpu_-imis/CPUIMS_Clone.git
+      
+      - name: Test Ping
         run: |
-          git clone git@gitee.com:cpu_-imis/CPUIMS_Clone.git
+          ping -c 2 www.google.com
