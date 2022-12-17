@@ -13,9 +13,9 @@ jobs:
           ssh-private-key: |
             ${{ secrets.SSH_KEY }}
 
-      - name: Test Github
-        run: |
-          ssh -T git@github.com
+      #- name: Test Github
+      #  run: |
+      #    ssh -T git@github.com
       
       - name: Test Gitee
         run: |
