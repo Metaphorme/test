@@ -1,5 +1,5 @@
 on:
-  repository_dispatch
+  repository_dispatch:
     types: [push_from_gitee]
 
 jobs:
