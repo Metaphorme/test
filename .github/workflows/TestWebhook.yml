@@ -3,7 +3,7 @@ name: Test Webhook
 on:
   workflow_dispatch:
   repository_dispatch:
-    types: [push_from_gitee]
+    types: hello
 
 jobs:
   run:
