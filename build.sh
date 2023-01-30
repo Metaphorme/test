@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Hello!"
+
 echo "Start to build for docker..."
 
 docker run -d \
