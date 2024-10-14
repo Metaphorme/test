@@ -1,0 +1,31 @@
+name: Build Source Engine
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: macos-latest-xlarge
+    steps: 
+      - name: Clone
+        run: |
+          git clone --recursive --depth 1 https://github.com/nillerusr/source-engine.git
+
+      - name: Install dependencies
+        run: |
+          brew install sdl2 freetype2 fontconfig pkg-config opus libpng libedit
+
+      - name: Build
+        run: |
+          cd source-engine
+          ./waf configure -T release
+
+      - name: Compress
+        run: |
+          tar -cfJ source-engine.tar.xz source-engine/*
+
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-engine.tar.xz
+          path: source-engine.tar.xz
