@@ -62,8 +62,15 @@ jobs:
             tar -cJf source-engine-${build_game}-${platform}-${arch}.tar.xz source-engine-${build_game}-${platform}-${arch}/*
           done
 
-      - name: Upload
+      - name: Upload each tarball
+        run: |
+          for file in *.tar.xz; do
+            echo "Uploading $file"
+            echo "::set-output name=tarball::$file"
+          done
+      
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: source-engine
-          path: *.tar.xz
+          name: ${{ steps.compress.outputs.tarball }}
+          path: ${{ steps.compress.outputs.tarball }}
