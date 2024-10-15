@@ -14,7 +14,7 @@ jobs:
     # hl1       ->  可能是半条命：起源（我没有测试）
     # portal    ->  传送门（我没有测试）
     env:
-      games: ("hl2" "episodic" "hl1" "portal")
+      games: "hl2 episodic hl1 portal"
       platform: "mac"  # 平台名，仅用于文件夹命名
       arch: "aarch64"  # 架构，仅用于文件夹命名
   
