@@ -29,10 +29,14 @@ jobs:
 
       - name: Make Configure and Build
         run: |
+          export LDFLAGS="-L/opt/homebrew/opt/libedit/lib"
+          export CPPFLAGS="-I/opt/homebrew/opt/libedit/include"
+          export PKG_CONFIG_PATH="/opt/homebrew/opt/libedit/lib/pkgconfig"
+          
           cd source-engine
           
           # 编译引擎
-          for build_game in "${games[@]}"; do
+          for build_game in ${games[*]}; do
               echo "Building and installing $build_game for $platform on $arch..."
           
               python3 waf configure -T release --prefix='' --build-games="$build_game"
@@ -58,7 +62,7 @@ jobs:
 
       - name: Compress
         run: |
-          for build_game in "${games[@]}"; do
+          for build_game in ${games[*]}; do
             tar -cJf source-engine-${build_game}-${platform}-${arch}.tar.xz source-engine-${build_game}-${platform}-${arch}/*
           done
 
