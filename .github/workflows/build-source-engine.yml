@@ -6,8 +6,20 @@ on:
 jobs:
   Build:
     runs-on: macos-14
+    
+    # 需要编译的引擎类型
+    # 参考：https://gist.github.com/tifasoftware/971697061ffcf783807887795d7406df
+    # hl2       ->  半条命2
+    # episodic  ->  半条命2：第一章、半条命2：第二章（我没有测试）
+    # hl1       ->  可能是半条命：起源（我没有测试）
+    # portal    ->  传送门（我没有测试）
+    env:
+      games: ("hl2" "episodic" "hl1" "portal")
+      platform: "mac"  # 平台名，仅用于文件夹命名
+      arch: "aarch64"  # 架构，仅用于文件夹命名
+  
     steps: 
-      - name: Clone
+      - name: Clone Source Code
         run: |
           git clone --recursive --depth 1 https://github.com/nillerusr/source-engine.git
 
@@ -15,17 +27,43 @@ jobs:
         run: |
           brew install sdl2 freetype2 fontconfig pkg-config opus libpng libedit
 
-      - name: Build
+      - name: Make Configure and Build
         run: |
           cd source-engine
-          ./waf configure -T release
+          
+          # 编译引擎
+          for build_game in "${games[@]}"; do
+              echo "Building and installing $build_game for $platform on $arch..."
+          
+              python3 waf configure -T release --prefix='' --build-games="$build_game"
+              if [ $? -ne 0 ]; then
+                  echo "Configuration failed for $build_game"
+                  exit 1
+              fi
+          
+              python3 waf build
+              if [ $? -ne 0 ]; then
+                  echo "Build failed for $build_game"
+                  exit 1
+              fi
+          
+              python3 waf install --destdir="../source-engine-${build_game}-${platform}-${arch}"
+              if [ $? -ne 0 ]; then
+                  echo "Install failed for $build_game"
+                  exit 1
+              fi
+          
+              echo "$build_game build and install completed successfully."
+          done
 
       - name: Compress
         run: |
-          tar -cfJ source-engine.tar.xz source-engine/*
+          for build_game in "${games[@]}"; do
+            tar -cJf source-engine-${build_game}-${platform}-${arch}.tar.xz source-engine-${build_game}-${platform}-${arch}/*
+          done
 
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: source-engine.tar.xz
-          path: source-engine.tar.xz
+          name: source-engine
+          path: *.tar.xz
