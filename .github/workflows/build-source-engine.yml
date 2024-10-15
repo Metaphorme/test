@@ -23,7 +23,7 @@ jobs:
         run: |
           git clone --recursive --depth 1 https://github.com/nillerusr/source-engine.git
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
           brew install sdl2 freetype2 fontconfig pkg-config opus libpng libedit
 
@@ -32,7 +32,8 @@ jobs:
           export LDFLAGS="-L/opt/homebrew/opt/libedit/lib"
           export CPPFLAGS="-I/opt/homebrew/opt/libedit/include"
           export PKG_CONFIG_PATH="/opt/homebrew/opt/libedit/lib/pkgconfig"
-          
+
+          mkdir build
           cd source-engine
           
           # 编译引擎
@@ -51,7 +52,7 @@ jobs:
                   exit 1
               fi
           
-              python3 waf install --destdir="../source-engine-${build_game}-${platform}-${arch}"
+              python3 waf install --destdir="../build/source-engine-${build_game}-${platform}-${arch}"
               if [ $? -ne 0 ]; then
                   echo "Install failed for $build_game"
                   exit 1
@@ -62,19 +63,13 @@ jobs:
 
       - name: Compress
         run: |
+          cd build
           for build_game in ${games[*]}; do
             tar -cJf source-engine-${build_game}-${platform}-${arch}.tar.xz source-engine-${build_game}-${platform}-${arch}/*
-          done
-
-      - name: Upload each tarball
-        run: |
-          for file in *.tar.xz; do
-            echo "Uploading $file"
-            echo "::set-output name=tarball::$file"
           done
       
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ steps.compress.outputs.tarball }}
-          path: ${{ steps.compress.outputs.tarball }}
+          name: source-engine
+          path: build/*.tar.xz
