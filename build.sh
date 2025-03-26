@@ -11,3 +11,4 @@ docker run -d \
 
 docker build -t rosetta - < Dockerfile
 #kill -9 $(netstat -antp | grep :28294 | awk '{print $7}' | awk -F'/' '{ print $1 }')
+
